@@ -1108,16 +1108,189 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-black/8 bg-white py-10 text-[#6b6b6b]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-          <p className="text-sm">&copy; 2026 Magnum Editions. All rights reserved.</p>
-          <div className="flex flex-wrap gap-4 text-sm text-[#8a8a8a]">
-            <button className="transition hover:text-black">Privacy</button>
-            <button className="transition hover:text-black">Terms</button>
-            <button className="transition hover:text-black">Press</button>
-          </div>
-        </div>
-      </footer>
+      <footer className="w-full border-t border-black/20 bg-[#f5f5f3] text-black">
+
+  {/* TOP SECTION */}
+  <div className="grid grid-cols-1 gap-14 px-8 py-16 md:grid-cols-5">
+
+    {/* LOGO */}
+    <div className="space-y-8">
+      <img
+         src="/icon.png"
+        alt="Magnum"
+        className="w-28 object-contain"
+      />
+
+      <a
+        href="/"
+        className="inline-block text-[15px] underline underline-offset-4 transition-opacity hover:opacity-60"
+      >
+        Back to main site
+      </a>
+    </div>
+
+    {/* ABOUT */}
+    <div className="space-y-5">
+      <h3 className="text-[20px] font-semibold">About</h3>
+
+      <div className="flex flex-col gap-4 text-[17px] text-black/65">
+        <a href="#" className="hover:text-black">
+          Magnum Photos
+        </a>
+
+        <a href="#" className="hover:text-black">
+          Find Us
+        </a>
+      </div>
+    </div>
+
+    {/* HELP */}
+    <div className="space-y-5">
+      <h3 className="text-[20px] font-semibold">Help</h3>
+
+      <div className="flex flex-col gap-4 text-[17px] text-black/65">
+        <a href="#">Contact Us</a>
+        <a href="#">FAQs</a>
+        <a href="#">Delivery & Shipping</a>
+        <a href="#">Returns & Refund Policy</a>
+        <a href="#">Customs Information</a>
+      </div>
+    </div>
+
+    {/* POLICIES */}
+    <div className="space-y-5">
+      <h3 className="text-[20px] font-semibold">Policies</h3>
+
+      <div className="flex flex-col gap-4 text-[17px] text-black/65">
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+        <a href="#">T&Cs</a>
+      </div>
+    </div>
+
+    {/* NEWSLETTER */}
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-[38px] font-semibold leading-none">
+          Sign up
+        </h3>
+
+        <p className="mt-4 text-[18px] text-black/70">
+          Get the latest news and offers
+        </p>
+      </div>
+
+      <input
+        type="email"
+        placeholder="Your E-mail"
+        className="h-[68px] w-full border border-black/40 bg-transparent px-6 text-[18px] outline-none"
+      />
+
+      <button className="h-[68px] w-full bg-black text-[18px] font-semibold text-white transition-all hover:opacity-90">
+        SUBSCRIBE
+      </button>
+    </div>
+  </div>
+
+  {/* MIDDLE SECTION */}
+  <div className="flex flex-col items-start justify-between gap-14 border-t border-black/20 px-8 py-16 md:flex-row">
+
+    {/* CURRENCY */}
+    <div className="space-y-5">
+      <p className="text-[18px] text-black/55">
+        Currency
+      </p>
+
+      <button className="flex h-[52px] items-center gap-4 border border-black/40 px-5 text-[20px]">
+        USD $
+        <span className="text-sm">⌄</span>
+      </button>
+    </div>
+
+    {/* SOCIAL */}
+    <div className="space-y-3 md:text-right">
+      <p className="text-[15px] text-black/55">
+        Join Our Social Media
+      </p>
+
+      <div className="grid grid-cols-3 gap-x-8 gap-y-8 text-[42px]">
+        <a href="#" className="transition-opacity hover:opacity-60">
+          𝕏
+        </a>
+
+        <a href="#" className="transition-opacity hover:opacity-60">
+          f
+        </a>
+
+        <a href="#" className="transition-opacity hover:opacity-60">
+          𝓟
+        </a>
+
+        <a href="#" className="transition-opacity hover:opacity-60">
+          ◎
+        </a>
+
+        <a href="#" className="transition-opacity hover:opacity-60">
+          ♪
+        </a>
+
+        <a href="#" className="transition-opacity hover:opacity-60">
+          ▶
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* BOTTOM SECTION */}
+  <div className="flex flex-col items-start justify-between gap-8 border-t border-black/20 px-8 py-10 md:flex-row md:items-center">
+
+    {/* COPYRIGHT */}
+    <p className="text-[18px] text-black/70">
+      © 2026 Magnum Photos.
+    </p>
+
+    {/* RIGHT LOGOS */}
+    {/* POWERED BY */}
+  <div className="mt-5 flex justify-end">
+    <div className="inline-flex items-center gap-3 rounded-lg border border-black/10 bg-black/[0.03] px-4 py-3 transition-all duration-300 hover:bg-black/[0.05]">
+
+      {/* Fabulous Media */}
+      <a
+        href="https://fabulousmedia.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="opacity-80 transition-opacity hover:opacity-100"
+        aria-label="FabulousMedia"
+      >
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAq1BMVEVHcEwAAADxmjLdVS8AAAAAAACgoKDi3t3tjzTymjHub0bdPC+uKyKfJx+Li4v////q6urXmWXsVi/qNi7MNSu5LyafKCBjY2P4///x8fLqPjK8MSeeJh1ISEj5+vofHx/Rzs7qVEy9urrujIfrLBt6enrWq6m9Kh73x8XcGgC9IRO2dXOnU0+dDwQ4ODitY2CyQDqogYC4EAC4lpScAAC4GAQ0OjsAAAD///8RPPMVAAAAOXRSTlMAYGBgQf//////////UP//////////////////////////////////////////////////UP9QUGHElwbPAAABN0lEQVR4AWyRVRLDMAwFy9zKYU6Zme9/s9Z5ozTqZH93TXKlUpXUBPVKpdEUtNqdbk6vPxj+BSMiZcB2TMt23L/AIyI/ML62F1r9KHJiGSQpaXzDtMLQdqJoIHcYB5QRWCF85MqgDZ9+dT/S3pHBhMDU0ss1AxHMCPSsMIKP4mLQIjBf9LXGBoVgSWC1sNmv40LgEdhsI/a7/eGYB6cUvr1lHa3Pfno+IsgHoHY/fwmI/OsRQZsvcGPvOIo094cOJsTMng6CJw/tpYOEciaDdeZ5TfLmOzDty7e4rQh4TQS4BVCH3fNOYNREwIMG6XnPN2oiAK1fkVLGpMkBD1uimjLgcTNpUwb5wNmPRcAoYlR5UBhqkJQF4rleaYDnglFZIJ7bKgvE383KAvF3k9dnoOyPCSzggAEAuL07sDHFZu4AAAAASUVORK5CYII="
+          alt="FabulousMedia"
+          className="h-4 w-auto object-contain"
+        />
+      </a>
+
+      {/* Divider */}
+      <span className="h-4 w-px bg-black/20" />
+
+      {/* GoCommercially */}
+      <a
+        href="https://gocommercially.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="opacity-80 transition-opacity hover:opacity-100"
+        aria-label="GoCommercially"
+      >
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAABJ0lEQVR4AZ3TEazDYBiF4ddlNJnNYTIv1DO8WpuUqks9KY2Gk2KhXKpXStVKrZ5C5b3QLLkX/i3ZsS955CTnww/5EqzvwDroOIWBCdHkGgY+gcIw0Aw4zmGgJ4AmDJwBKMLAEq6dhoGVGgbL1Lf1I0/OZBuoov1Pp1pGh3R2HsdhiACgUsyJiwOdZsQ32Pr1bJlkIdaVsyOJjlz/VIWztFSqq09a9ciryJaOmsaurGoLBvXC2jd1Vd2TNLvd8ryjoTbfsfNOr8b4PwzkKkcbSpW9qsbRo9+AB9p1ZKfQLxmlqhMAl/sizju2xiNA9hoFbBfq0PZu7dtZp7bMUwBIwqNdxq5+FIbA81Trpz2kSxhEAK1BUADnxSAoP636AoPvwNp9+7yB/AKHCUYfTsNJ9QAAAABJRU5ErkJggg=="
+          alt="GoCommercially"
+          className="h-4 w-auto object-contain"
+        />
+      </a>
+
+    </div>
+  </div>
+  </div>
+</footer>
 
       {selectedArt && (
         <div
