@@ -1227,15 +1227,15 @@ export default function Home() {
         </a>
 
         <a href="#" className="transition-opacity hover:opacity-60">
-          ◎
+          
         </a>
 
         <a href="#" className="transition-opacity hover:opacity-60">
-          ♪
+          
         </a>
 
         <a href="#" className="transition-opacity hover:opacity-60">
-          ▶
+          
         </a>
       </div>
     </div>
