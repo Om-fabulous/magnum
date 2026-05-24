@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type Artwork = {
@@ -31,11 +34,49 @@ const categories = [
 
 const orientations = ["All", "Landscape", "Portrait", "Square"];
 const colorOptions = ["All", "Black & White", "Color"];
-const sortOptions = ["Newest", "Oldest", "Price: Low to High", "Price: High to Low", "Title A–Z", "Title Z–A"];
-const artists = ["All", "Henri Cartier-Bresson", "Robert Capa", "Eve Arnold", "Steve McCurry", "Elliott Erwitt", "Sebastião Salgado"];
-const collectionTypes = ["All", "Limited Edition", "Open Edition", "Vintage Print", "Artist Proof", "Museum Collection"];
-const mediums = ["All", "Archival Pigment", "Gelatin Silver", "Platinum Palladium", "Digital C-Type", "Hahnemühle Baryta", "Fine Art Rag"];
-const styles = ["All", "Modern", "Contemporary", "Classic", "Avant-Garde", "Minimalist", "Documentary"];
+const sortOptions = [
+  "Newest",
+  "Oldest",
+  "Price: Low to High",
+  "Price: High to Low",
+  "Title A–Z",
+  "Title Z–A",
+];
+const artists = [
+  "All",
+  "Henri Cartier-Bresson",
+  "Robert Capa",
+  "Eve Arnold",
+  "Steve McCurry",
+  "Elliott Erwitt",
+  "Sebastião Salgado",
+];
+const collectionTypes = [
+  "All",
+  "Limited Edition",
+  "Open Edition",
+  "Vintage Print",
+  "Artist Proof",
+  "Museum Collection",
+];
+const mediums = [
+  "All",
+  "Archival Pigment",
+  "Gelatin Silver",
+  "Platinum Palladium",
+  "Digital C-Type",
+  "Hahnemühle Baryta",
+  "Fine Art Rag",
+];
+const styles = [
+  "All",
+  "Modern",
+  "Contemporary",
+  "Classic",
+  "Avant-Garde",
+  "Minimalist",
+  "Documentary",
+];
 const priceRanges = [
   { label: "Under $500", min: 0, max: 500 },
   { label: "$500–$1,000", min: 500, max: 1000 },
@@ -60,7 +101,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 02/25",
     year: "2025",
     detail: "Silver gelatin on black velvet paper.",
-    gradient: "radial-gradient(circle at 20% 18%, rgba(0,0,0,0.06), transparent 26%), linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06)), linear-gradient(135deg, rgba(0,0,0,0.01), rgba(0,0,0,0.04))",
+    gradient:
+      "radial-gradient(circle at 20% 18%, rgba(0,0,0,0.06), transparent 26%), linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06)), linear-gradient(135deg, rgba(0,0,0,0.01), rgba(0,0,0,0.04))",
     imageUrl: "/images/MPRINT-HEB-NYC15295-8x10-FRAME-BL.webp",
     artist: "Henri Cartier-Bresson",
     orientation: "Landscape",
@@ -78,7 +120,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 11/20",
     year: "2024",
     detail: "Platinum palladium print with matte lacquer.",
-    gradient: "radial-gradient(circle at 15% 25%, rgba(0,0,0,0.04), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.06))",
+    gradient:
+      "radial-gradient(circle at 15% 25%, rgba(0,0,0,0.04), transparent 20%), linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.06))",
     imageUrl: "/images/MPRINT-HEB-PAR35829-8x10-FRAME-BL.webp",
     artist: "Robert Capa",
     orientation: "Portrait",
@@ -96,7 +139,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 19/30",
     year: "2023",
     detail: "Gelatin silver print on textured cotton rag.",
-    gradient: "radial-gradient(circle at 75% 20%, rgba(0,0,0,0.05), transparent 22%), linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.05))",
+    gradient:
+      "radial-gradient(circle at 75% 20%, rgba(0,0,0,0.05), transparent 22%), linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.05))",
     imageUrl: "/images/MPRINT-PAT-MG1131314-8x10-8x10-FRAME-BL.webp",
     artist: "Eve Arnold",
     orientation: "Landscape",
@@ -114,7 +158,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 08/18",
     year: "2025",
     detail: "Hand-developed archival composite print.",
-    gradient: "radial-gradient(circle at 50% 30%, rgba(0,0,0,0.06), transparent 26%)",
+    gradient:
+      "radial-gradient(circle at 50% 30%, rgba(0,0,0,0.06), transparent 26%)",
     imageUrl: "/images/MPRINT-DER-PAR283590-8x10-FRAME-BL.webp",
     artist: "Steve McCurry",
     orientation: "Landscape",
@@ -132,7 +177,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 06/22",
     year: "2024",
     detail: "Archival pigment print with cold press finish.",
-    gradient: "radial-gradient(circle at 30% 18%, rgba(0,0,0,0.05), transparent 24%)",
+    gradient:
+      "radial-gradient(circle at 30% 18%, rgba(0,0,0,0.05), transparent 24%)",
     imageUrl: "/images/MPRINT-MIC-MG183526-8x10-FRAME-BL.webp",
     artist: "Elliott Erwitt",
     orientation: "Landscape",
@@ -150,7 +196,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 04/12",
     year: "2025",
     detail: "Custom darkroom print with polished edge.",
-    gradient: "radial-gradient(circle at 60% 16%, rgba(0,0,0,0.06), transparent 24%)",
+    gradient:
+      "radial-gradient(circle at 60% 16%, rgba(0,0,0,0.06), transparent 24%)",
     imageUrl: "/images/MPRINT-MOI-PAR22894-8x10-FRAME-BL.webp",
     artist: "Sebastião Salgado",
     orientation: "Portrait",
@@ -168,7 +215,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 15/30",
     year: "2024",
     detail: "Museum-quality archival matte finish.",
-    gradient: "radial-gradient(circle at 80% 40%, rgba(0,0,0,0.05), transparent 24%)",
+    gradient:
+      "radial-gradient(circle at 80% 40%, rgba(0,0,0,0.05), transparent 24%)",
     imageUrl: "/images/MPRINT-GLB-PAR38380-8x10-FRAME-BL.webp",
     artist: "Henri Cartier-Bresson",
     orientation: "Portrait",
@@ -186,7 +234,8 @@ const _baseGallery: Artwork[] = [
     edition: "Edition 03/16",
     year: "2025",
     detail: "Hahnemühle baryta print with archival varnish.",
-    gradient: "radial-gradient(circle at 25% 20%, rgba(0,0,0,0.06), transparent 20%)",
+    gradient:
+      "radial-gradient(circle at 25% 20%, rgba(0,0,0,0.06), transparent 20%)",
     imageUrl: "/images/MPRINT-MYA-MG185504-8x10-FRAME-BL.webp",
     artist: "Eve Arnold",
     orientation: "Landscape",
@@ -206,6 +255,7 @@ const gallery: Artwork[] = Array.from({ length: 72 }).map((_, i) => {
       ? base.imageUrl
       : `${base.imageUrl}&sig=${i + 1}`
     : undefined;
+
   return {
     ...base,
     id: `${base.id}-${String(i + 1).padStart(3, "0")}`,
@@ -243,9 +293,17 @@ function FilterSection({
         className="group flex w-full items-center justify-between py-3 text-left"
       >
         <span className="text-xs uppercase tracking-[0.12em] text-[#6b6b6b]">{title}</span>
-        <span className={`inline-block text-[#8a8a8a] transition-transform duration-300 ${open ? "rotate-180" : ""}`}>
+        <span
+          className={`inline-block text-[#8a8a8a] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        >
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M1 1L5 5L9 1"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </span>
       </button>
@@ -253,7 +311,7 @@ function FilterSection({
         ref={contentRef}
         className="overflow-hidden transition-all duration-300 ease-in-out"
         style={{
-          maxHeight: open ? contentRef.current?.scrollHeight ?? 400 : 0,
+          maxHeight: open ? 600 : 0,
           opacity: open ? 1 : 0,
         }}
       >
@@ -285,7 +343,9 @@ function FilterPill({
     >
       <span className={selected ? "font-medium" : ""}>{label}</span>
       {count !== undefined && (
-        <span className={`text-[0.7rem] tracking-wide ${selected ? "text-white/60" : "text-[#a0a0a0]"}`}>
+        <span
+          className={`text-[0.7rem] tracking-wide ${selected ? "text-white/60" : "text-[#a0a0a0]"}`}
+        >
           {count}
         </span>
       )}
@@ -316,7 +376,13 @@ function CheckFilter({
       >
         {checked && (
           <svg width="9" height="8" viewBox="0 0 9 8" fill="none">
-            <path d="M1 4L3.5 6.5L8 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path
+              d="M1 4L3.5 6.5L8 1"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         )}
       </span>
@@ -343,7 +409,6 @@ export default function Home() {
   const [selectedArt, setSelectedArt] = useState<Artwork | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const cursorRef = useRef<HTMLDivElement | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
@@ -414,7 +479,6 @@ export default function Home() {
   const filteredGallery = useMemo(() => {
     let result = [...gallery];
 
-    // Search
     if (filters.search) {
       const q = filters.search.toLowerCase();
       result = result.filter(
@@ -425,42 +489,34 @@ export default function Home() {
       );
     }
 
-    // Category
     if (filters.category !== "All") {
       result = result.filter((art) => art.category === filters.category);
     }
 
-    // Orientation
     if (filters.orientation !== "All") {
       result = result.filter((art) => art.orientation === filters.orientation);
     }
 
-    // Color
     if (filters.color !== "All") {
       result = result.filter((art) => art.color === filters.color);
     }
 
-    // Artist
     if (filters.artist !== "All") {
       result = result.filter((art) => art.artist === filters.artist);
     }
 
-    // Collection Type
     if (filters.collectionType !== "All") {
       result = result.filter((art) => art.collectionType === filters.collectionType);
     }
 
-    // Medium
     if (filters.medium !== "All") {
       result = result.filter((art) => art.medium === filters.medium);
     }
 
-    // Style
     if (filters.style !== "All") {
       result = result.filter((art) => art.style === filters.style);
     }
 
-    // Price Range
     if (filters.priceRange !== null) {
       const range = priceRanges[filters.priceRange];
       if (range) {
@@ -470,12 +526,10 @@ export default function Home() {
       }
     }
 
-    // Availability
     if (filters.availableOnly) {
       result = result.filter((art) => art.available === true);
     }
 
-    // Sort
     switch (filters.sort) {
       case "Newest":
         result.sort((a, b) => parseInt(b.year) - parseInt(a.year));
@@ -529,14 +583,21 @@ export default function Home() {
     const move = (e: MouseEvent) => {
       cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     };
+
     const down = () => cursor.classList.add("enlarge");
     const up = () => cursor.classList.remove("enlarge");
+
     const over = (e: MouseEvent) => {
-      const target = (e.target as Element)?.closest?.(".magnetic-btn, .card-hover-highlight, a, button");
+      const target = (e.target as Element)?.closest?.(
+        ".magnetic-btn, .card-hover-highlight, a, button"
+      );
       if (target) cursor.classList.add("enlarge");
     };
+
     const out = (e: MouseEvent) => {
-      const target = (e.target as Element)?.closest?.(".magnetic-btn, .card-hover-highlight, a, button");
+      const target = (e.target as Element)?.closest?.(
+        ".magnetic-btn, .card-hover-highlight, a, button"
+      );
       if (target) cursor.classList.remove("enlarge");
     };
 
@@ -545,6 +606,7 @@ export default function Home() {
     window.addEventListener("mouseup", up);
     window.addEventListener("mouseover", over);
     window.addEventListener("mouseout", out);
+
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mousedown", down);
@@ -561,7 +623,9 @@ export default function Home() {
 
   useEffect(() => {
     document.body.style.overflow = selectedArt ? "hidden" : "auto";
-    return () => { document.body.style.overflow = "auto"; };
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [selectedArt]);
 
   useEffect(() => {
@@ -577,6 +641,7 @@ export default function Home() {
       },
       { root: null, threshold: 0.12 }
     );
+
     revealElements.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, [isLoaded, filteredGallery]);
@@ -589,27 +654,16 @@ export default function Home() {
     el.style.setProperty("--mx", String((x / rect.width) * 100));
     el.style.setProperty("--my", String((y / rect.height) * 100));
   }
+
   function handleCardLeave(e: React.MouseEvent<HTMLElement>) {
     const el = e.currentTarget as HTMLElement;
     el.style.setProperty("--mx", "0");
     el.style.setProperty("--my", "0");
   }
-  function handleMagnetMove(e: React.MouseEvent<HTMLButtonElement>) {
-    const el = e.currentTarget as HTMLElement;
-    const rect = el.getBoundingClientRect();
-    const dx = (e.clientX - rect.left - rect.width / 2) * 0.06;
-    const dy = (e.clientY - rect.top - rect.height / 2) * 0.06;
-    el.style.transform = `translate(${dx}px, ${dy}px)`;
-  }
-  function handleMagnetLeave(e: React.MouseEvent<HTMLButtonElement>) {
-    const el = e.currentTarget as HTMLElement;
-    el.style.transform = "translate(0,0)";
-  }
 
   const filterSidebar = (
     <aside className="w-full shrink-0 lg:w-[280px]">
       <div className="sticky top-[73px] space-y-1 filter-sidebar p-5 lg:max-h-[calc(100vh-100px)] lg:overflow-y-auto">
-        {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-black/6">
           <span className="text-xs uppercase tracking-[0.12em] text-[#6b6b6b]">Filters</span>
           <div className="flex items-center gap-2">
@@ -633,12 +687,14 @@ export default function Home() {
         </div>
 
         <div className={`space-y-1 ${sidebarOpen ? "block" : "hidden lg:block"}`}>
-          {/* Search */}
           <FilterSection title="Search" open={sectionsOpen.search} onToggle={() => toggleSection("search")}>
             <div className="relative">
               <svg
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#a0a0a0]"
-                width="14" height="14" viewBox="0 0 14 14" fill="none"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
               >
                 <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.2" />
                 <path d="M10 10l3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
@@ -653,7 +709,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Sort By */}
           <FilterSection title="Sort By" open={sectionsOpen.sort} onToggle={() => toggleSection("sort")}>
             <div className="space-y-1.5">
               {sortOptions.map((option) => (
@@ -672,7 +727,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Categories */}
           <FilterSection title="Categories" open={sectionsOpen.categories} onToggle={() => toggleSection("categories")}>
             <div className="space-y-1">
               {categories.map((cat) => (
@@ -687,7 +741,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Orientation */}
           <FilterSection title="Orientation" open={sectionsOpen.orientation} onToggle={() => toggleSection("orientation")}>
             <div className="flex flex-wrap gap-2">
               {orientations.map((o) => (
@@ -707,7 +760,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Color */}
           <FilterSection title="Color" open={sectionsOpen.color} onToggle={() => toggleSection("color")}>
             <div className="flex flex-wrap gap-2">
               {colorOptions.map((c) => (
@@ -727,7 +779,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Artist */}
           <FilterSection title="Artist" open={sectionsOpen.artist} onToggle={() => toggleSection("artist")}>
             <div className="space-y-1 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
               {artists.map((a) => (
@@ -742,8 +793,11 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Collection Type */}
-          <FilterSection title="Collection Type" open={sectionsOpen.collectionType} onToggle={() => toggleSection("collectionType")}>
+          <FilterSection
+            title="Collection Type"
+            open={sectionsOpen.collectionType}
+            onToggle={() => toggleSection("collectionType")}
+          >
             <div className="space-y-1">
               {collectionTypes.map((ct) => (
                 <FilterPill
@@ -757,7 +811,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Price Range */}
           <FilterSection title="Price Range" open={sectionsOpen.price} onToggle={() => toggleSection("price")}>
             <div className="space-y-1">
               {priceRanges.map((range, i) => (
@@ -776,8 +829,11 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Availability */}
-          <FilterSection title="Availability" open={sectionsOpen.availability} onToggle={() => toggleSection("availability")}>
+          <FilterSection
+            title="Availability"
+            open={sectionsOpen.availability}
+            onToggle={() => toggleSection("availability")}
+          >
             <CheckFilter
               label="Available only"
               checked={filters.availableOnly}
@@ -785,7 +841,6 @@ export default function Home() {
             />
           </FilterSection>
 
-          {/* Medium */}
           <FilterSection title="Medium" open={sectionsOpen.medium} onToggle={() => toggleSection("medium")}>
             <div className="space-y-1">
               {mediums.map((m) => (
@@ -800,7 +855,6 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Style */}
           <FilterSection title="Style" open={sectionsOpen.style} onToggle={() => toggleSection("style")}>
             <div className="space-y-1">
               {styles.map((s) => (
@@ -815,14 +869,14 @@ export default function Home() {
             </div>
           </FilterSection>
 
-          {/* Featured Collections */}
-          <FilterSection title="Featured Collections" open={sectionsOpen.featured} onToggle={() => toggleSection("featured")}>
+          <FilterSection
+            title="Featured Collections"
+            open={sectionsOpen.featured}
+            onToggle={() => toggleSection("featured")}
+          >
             <div className="space-y-2">
               {featuredCollections.map((fc) => (
-                <div
-                  key={fc.name}
-          className="featured-card px-3.5 py-3"
-                >
+                <div key={fc.name} className="featured-card px-3.5 py-3">
                   <span className="text-sm text-[#6b6b6b] transition group-hover:text-[#0b0b0b]">{fc.name}</span>
                   <span className="text-[0.65rem] tracking-wide text-[#a0a0a0]">{fc.count} pieces</span>
                 </div>
@@ -838,16 +892,16 @@ export default function Home() {
     <div className="relative overflow-hidden bg-white text-[#0b0b0b]">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),transparent_35%)] blur-3xl opacity-40" />
 
-      {/* Header */}
       <header className="sticky top-0 z-30 border-b border-black/10 bg-white/80 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 sm:px-8">
           <div className="flex items-center gap-4">
             <Image src="/icon.png" alt="Magnum Editions" width={60} height={60} />
             <div>
-              <div className="text-lg font-semibold tracking-wide text-[#0b0b0b]"></div>
-              <div className="text-xs text-[#8a8a8a]"></div>
+              <div className="text-lg font-semibold tracking-wide text-[#0b0b0b]" />
+              <div className="text-xs text-[#8a8a8a]" />
             </div>
           </div>
+
           <nav className="hidden items-center gap-5 text-lg uppercase tracking-[0.06em] text-[#0a0909] md:flex">
             <button className="transition hover:text-black">Featured</button>
             <button className="transition hover:text-black">Books</button>
@@ -856,7 +910,7 @@ export default function Home() {
             <button className="transition hover:text-black">Gifts</button>
             <button className="transition hover:text-black">Photographers</button>
           </nav>
-          {/* Mobile filter toggle */}
+
           <button
             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
             className="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-xs uppercase tracking-[0.08em] text-[#6b6b6b] transition hover:border-black/14 lg:hidden"
@@ -865,14 +919,11 @@ export default function Home() {
               <path d="M2 3.5h10M4 7h6M5.5 10.5h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
             Filters
-            {hasActiveFilters && (
-              <span className="inline-flex h-2 w-2 rounded-full bg-[#0b0b0b]" />
-            )}
+            {hasActiveFilters && <span className="inline-flex h-2 w-2 rounded-full bg-[#0b0b0b]" />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Filter Drawer */}
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileFiltersOpen(false)} />
@@ -885,11 +936,17 @@ export default function Home() {
                 </svg>
               </button>
             </div>
+
             <div className="space-y-1">
-              {/* Mobile filter sections - simplified copy of desktop */}
               <div className="border-b border-black/6 pb-4">
                 <div className="relative">
-                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#a0a0a0]" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <svg
+                    className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#a0a0a0]"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                  >
                     <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" strokeWidth="1.2" />
                     <path d="M10 10l3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
@@ -902,15 +959,21 @@ export default function Home() {
                   />
                 </div>
               </div>
+
               <div className="border-b border-black/6 pb-4">
                 <span className="block py-2 text-xs uppercase tracking-[0.12em] text-[#6b6b6b]">Sort By</span>
                 <div className="space-y-1">
                   {sortOptions.map((option) => (
                     <button
                       key={option}
-                      onClick={() => { setFilters((prev) => ({ ...prev, sort: option })); setMobileFiltersOpen(false); }}
+                      onClick={() => {
+                        setFilters((prev) => ({ ...prev, sort: option }));
+                        setMobileFiltersOpen(false);
+                      }}
                       className={`magnetic-btn w-full rounded-xl px-3.5 py-2.5 text-left text-sm transition ${
-                        filters.sort === option ? "bg-[#0b0b0b] text-white" : "text-[#6b6b6b] hover:bg-black/[0.03]"
+                        filters.sort === option
+                          ? "bg-[#0b0b0b] text-white"
+                          : "text-[#6b6b6b] hover:bg-black/[0.03]"
                       }`}
                     >
                       {option}
@@ -918,13 +981,17 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+
               <div className="border-b border-black/6 pb-4">
                 <span className="block py-2 text-xs uppercase tracking-[0.12em] text-[#6b6b6b]">Categories</span>
                 <div className="flex flex-wrap gap-1.5">
                   {categories.slice(0, 8).map((cat) => (
                     <button
                       key={cat}
-                      onClick={() => { setFilters((prev) => ({ ...prev, category: cat })); setMobileFiltersOpen(false); }}
+                      onClick={() => {
+                        setFilters((prev) => ({ ...prev, category: cat }));
+                        setMobileFiltersOpen(false);
+                      }}
                       className={`magnetic-btn rounded-xl border px-3 py-1.5 text-xs transition ${
                         filters.category === cat
                           ? "border-black/20 bg-[#0b0b0b] text-white"
@@ -948,7 +1015,6 @@ export default function Home() {
       )}
 
       <main className="mx-auto max-w-7xl px-6 pb-24 pt-8 sm:px-8 lg:px-10">
-        {/* Hero Section — heading + sub-text + 3 stat cards */}
         <section className="grid gap-10 lg:grid-cols-[1.4fr_0.9fr] lg:items-end mb-16">
           <div className="space-y-8">
             <div className="max-w-2xl space-y-6">
@@ -956,18 +1022,18 @@ export default function Home() {
                 Curated Editions
               </div>
               <div className="space-y-4">
-                <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-[#0b0b0b] sm:text-6xl">Magnum Editions</h1>
+                <h1 className="text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-[#0b0b0b] sm:text-6xl">
+                  Magnum Editions
+                </h1>
                 <p className="max-w-2xl text-base leading-8 text-[#4b4b4b] sm:text-lg">
                   This collection reflects the diversity of practice among Magnum&rsquo;s members with subjects ranging from world affairs and pivotal events, to the beauty of everyday scenes. The prints are available as 8x10&ldquo; archival pigment prints in limited editions of 100 each.
                 </p>
               </div>
             </div>
+
             <div className="grid gap-4 sm:grid-cols-3">
               {stats.map((item) => (
-                <div
-                key={item.label}
-                  className="stat-card"
-                >
+                <div key={item.label} className="stat-card">
                   <p className="text-4xl font-semibold tracking-[-0.04em] text-[#0b0b0b]">{item.value}</p>
                   <p className="mt-2 text-sm uppercase tracking-[0.1em] text-[#6b6b6b]">{item.label}</p>
                 </div>
@@ -977,7 +1043,9 @@ export default function Home() {
 
           <aside className="rounded-[2.5rem] border border-black/6 bg-white p-8 shadow-[0_30px_80px_rgba(11,11,11,0.06)]">
             <p className="text-sm uppercase tracking-[0.14em] text-white/60">Featured edit</p>
-            <h2 className="mt-5 text-3xl font-semibold leading-tight text-[#0b0b0b]">A refined presentation for carefully chosen photographic narratives.</h2>
+            <h2 className="mt-5 text-3xl font-semibold leading-tight text-[#0b0b0b]">
+              A refined presentation for carefully chosen photographic narratives.
+            </h2>
             <p className="mt-4 text-sm leading-7 text-[#4b4b4b]">
               The interface honors every print with soft glass layers, tactile card motion, and immersive reveal animations while keeping the experience calm, spacious, and editorial.
             </p>
@@ -998,14 +1066,10 @@ export default function Home() {
           </aside>
         </section>
 
-        {/* Gallery with Filter Sidebar */}
         <section className="flex flex-col gap-8 lg:flex-row">
-          {/* Desktop Sidebar */}
           <div className="hidden lg:block">{filterSidebar}</div>
 
-          {/* Gallery Grid */}
           <div className="flex-1 min-w-0">
-            {/* Sort & Results Bar */}
             <div className="mb-6 flex items-center justify-between">
               <p className="text-xs uppercase tracking-[0.1em] text-[#8a8a8a]">
                 <span className="text-[#0b0b0b] font-semibold">{filteredGallery.length}</span> results
@@ -1018,13 +1082,15 @@ export default function Home() {
                   className="rounded-xl border border-black/8 bg-white px-3 py-2 text-xs text-[#6b6b6b] outline-none transition focus:border-black/20"
                 >
                   {sortOptions.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
                   ))}
                 </select>
               </div>
             </div>
 
-            <div className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3 ${isTransitioning ? 'gallery-hidden' : 'gallery-fade'}`}>
+            <div className={`grid gap-6 sm:grid-cols-2 xl:grid-cols-3`}> 
               {isLoaded
                 ? filteredGallery.map((art, index) => (
                     <article
@@ -1095,7 +1161,9 @@ export default function Home() {
                   </svg>
                 </div>
                 <p className="text-lg font-semibold text-[#0b0b0b]">No results found</p>
-                <p className="mt-1 text-sm text-[#8a8a8a]">Try adjusting your filters to find what you&rsquo;re looking for.</p>
+                <p className="mt-1 text-sm text-[#8a8a8a]">
+                  Try adjusting your filters to find what you&rsquo;re looking for.
+                </p>
                 <button
                   onClick={resetAllFilters}
                   className="mt-6 rounded-full border border-black/10 bg-white px-6 py-2.5 text-xs uppercase tracking-[0.08em] text-[#6b6b6b] transition hover:border-black/20"
@@ -1109,198 +1177,138 @@ export default function Home() {
       </main>
 
       <footer className="w-full border-t border-black/20 bg-[#f5f5f3] text-black">
+        <div className="grid grid-cols-1 gap-14 px-8 py-16 md:grid-cols-5">
+          <div className="space-y-8">
+            <img src="/icon.png" alt="Magnum" className="w-28 object-contain" />
 
-  {/* TOP SECTION */}
-  <div className="grid grid-cols-1 gap-14 px-8 py-16 md:grid-cols-5">
+            <Link
+              href="/"
+              aria-label="Back to main site"
+              className="inline-block text-[15px] underline underline-offset-4 transition-opacity hover:opacity-60"
+            >
+              Back to main site
+            </Link>
+          </div>
 
-    {/* LOGO */}
-    <div className="space-y-8">
-      <img
-         src="/icon.png"
-        alt="Magnum"
-        className="w-28 object-contain"
-      />
+          <div className="space-y-5">
+            <h3 className="text-[20px] font-semibold">About</h3>
+            <div className="flex flex-col gap-4 text-[17px] text-black/65">
+              <a href="#" className="hover:text-black">
+                Magnum Photos
+              </a>
+              <a href="#" className="hover:text-black">
+                Find Us
+              </a>
+            </div>
+          </div>
 
-      <a
-        href="/"
-        className="inline-block text-[15px] underline underline-offset-4 transition-opacity hover:opacity-60"
-      >
-        Back to main site
-      </a>
-    </div>
+          <div className="space-y-5">
+            <h3 className="text-[20px] font-semibold">Help</h3>
+            <div className="flex flex-col gap-4 text-[17px] text-black/65">
+              <a href="#">Contact Us</a>
+              <a href="#">FAQs</a>
+              <a href="#">Delivery & Shipping</a>
+              <a href="#">Returns & Refund Policy</a>
+              <a href="#">Customs Information</a>
+            </div>
+          </div>
 
-    {/* ABOUT */}
-    <div className="space-y-5">
-      <h3 className="text-[20px] font-semibold">About</h3>
+          <div className="space-y-5">
+            <h3 className="text-[20px] font-semibold">Policies</h3>
+            <div className="flex flex-col gap-4 text-[17px] text-black/65">
+              <a href="#">Privacy</a>
+              <a href="#">Cookies</a>
+              <a href="#">T&Cs</a>
+            </div>
+          </div>
 
-      <div className="flex flex-col gap-4 text-[17px] text-black/65">
-        <a href="#" className="hover:text-black">
-          Magnum Photos
-        </a>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-[38px] font-semibold leading-none">Sign up</h3>
+              <p className="mt-4 text-[18px] text-black/70">Get the latest news and offers</p>
+            </div>
+            <input
+              type="email"
+              placeholder="Your E-mail"
+              className="h-[68px] w-full border border-black/40 bg-transparent px-6 text-[18px] outline-none"
+            />
+            <button className="h-[68px] w-full bg-black text-[18px] font-semibold text-white transition-all hover:opacity-90">
+              SUBSCRIBE
+            </button>
+          </div>
+        </div>
 
-        <a href="#" className="hover:text-black">
-          Find Us
-        </a>
-      </div>
-    </div>
+        <div className="flex flex-col items-start justify-between gap-14 border-t border-black/20 px-8 py-16 md:flex-row">
+          <div className="space-y-5">
+            <p className="text-[18px] text-black/55">Currency</p>
+            <button className="flex h-[52px] items-center gap-4 border border-black/40 px-5 text-[20px]">
+              USD $
+              <span className="text-sm">⌄</span>
+            </button>
+          </div>
+          <div className="space-y-3 md:text-right">
+            <p className="text-[15px] text-black/55">Join Our Social Media</p>
+            <div className="grid grid-cols-3 gap-x-8 gap-y-8 text-[42px]">
+              <a href="#" className="transition-opacity hover:opacity-60">
+                𝕏
+              </a>
+              <a href="#" className="transition-opacity hover:opacity-60">
+                f
+              </a>
+              <a href="#" className="transition-opacity hover:opacity-60">
+                𝓟
+              </a>
+              <a href="#" className="transition-opacity hover:opacity-60" />
+              <a href="#" className="transition-opacity hover:opacity-60" />
+              <a href="#" className="transition-opacity hover:opacity-60" />
+            </div>
+          </div>
+        </div>
 
-    {/* HELP */}
-    <div className="space-y-5">
-      <h3 className="text-[20px] font-semibold">Help</h3>
+        <div className="flex flex-col items-start justify-between gap-8 border-t border-black/20 px-8 py-10 md:flex-row md:items-center">
+          <p className="text-[18px] text-black/70">© 2026 Magnum Photos.</p>
+          <div className="mt-5 flex justify-end">
+            <div className="inline-flex items-center gap-3 rounded-lg border border-black/10 bg-black/[0.03] px-4 py-3 transition-all duration-300 hover:bg-black/[0.05]">
+              <a
+                href="https://fabulousmedia.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-80 transition-opacity hover:opacity-100"
+                aria-label="FabulousMedia"
+              >
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAq1BMVEVHcEwAAADxmjLdVS8AAAAAAACgoKDi3t3tjzTymjHub0bdPC+uKyKfJx+Li4v////q6urXmWXsVi/qNi7MNSu5LyafKCBjY2P4///x8fLqPjK8MSeeJh1ISEj5+vofHx/Rzs7qVEy9urrujIfrLBt6enrWq6m9Kh73x8XcGgC9IRO2dXOnU0+dDwQ4ODitY2CyQDqogYC4EAC4lpScAAC4GAQ0OjsAAAD///8RPPMVAAAAOXRSTlMAYGBgQf//////////UP//////////////////////////////////////////////////UP9QUGHElwbPAAABN0lEQVR4AWyRVRLDMAwFy9zKYU6Zme9/s9Z5ozTqZH93TXKlUpXUBPVKpdEUtNqdbk6vPxj+BSMiZcB2TMt23L/AIyI/ML62F1r9KHJiGSQpaXzDtMLQdqJoIHcYB5QRWCF85MqgDZ9+dT/S3pHBhMDU0ss1AxHMCPSsMIKP4mLQIjBf9LXGBoVgSWC1sNmv40LgEdhsI/a7/eGYB6cUvr1lHa3Pfno+IsgHoHY/fwmI/OsRQZsvcGPvOIo094cOJsTMng6CJw/tpYOEciaDdeZ5TfLmOzDty7e4rQh4TQS4BVCH3fNOYNREwIMG6XnPN2oiAK1fkVLGpMkBD1uimjLgcTNpUwb5wNmPRcAoYlR5UBhqkJQF4rleaYDnglFZIJ7bKgvE383KAvF3k9dnoOyPCSzggAEAuL07sDHFZu4AAAAASUVORK5CYII="
+                  alt="FabulousMedia"
+                  className="h-4 w-auto object-contain"
+                />
+              </a>
 
-      <div className="flex flex-col gap-4 text-[17px] text-black/65">
-        <a href="#">Contact Us</a>
-        <a href="#">FAQs</a>
-        <a href="#">Delivery & Shipping</a>
-        <a href="#">Returns & Refund Policy</a>
-        <a href="#">Customs Information</a>
-      </div>
-    </div>
+              <span className="h-4 w-px bg-black/20" />
 
-    {/* POLICIES */}
-    <div className="space-y-5">
-      <h3 className="text-[20px] font-semibold">Policies</h3>
-
-      <div className="flex flex-col gap-4 text-[17px] text-black/65">
-        <a href="#">Privacy</a>
-        <a href="#">Cookies</a>
-        <a href="#">T&Cs</a>
-      </div>
-    </div>
-
-    {/* NEWSLETTER */}
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-[38px] font-semibold leading-none">
-          Sign up
-        </h3>
-
-        <p className="mt-4 text-[18px] text-black/70">
-          Get the latest news and offers
-        </p>
-      </div>
-
-      <input
-        type="email"
-        placeholder="Your E-mail"
-        className="h-[68px] w-full border border-black/40 bg-transparent px-6 text-[18px] outline-none"
-      />
-
-      <button className="h-[68px] w-full bg-black text-[18px] font-semibold text-white transition-all hover:opacity-90">
-        SUBSCRIBE
-      </button>
-    </div>
-  </div>
-
-  {/* MIDDLE SECTION */}
-  <div className="flex flex-col items-start justify-between gap-14 border-t border-black/20 px-8 py-16 md:flex-row">
-
-    {/* CURRENCY */}
-    <div className="space-y-5">
-      <p className="text-[18px] text-black/55">
-        Currency
-      </p>
-
-      <button className="flex h-[52px] items-center gap-4 border border-black/40 px-5 text-[20px]">
-        USD $
-        <span className="text-sm">⌄</span>
-      </button>
-    </div>
-
-    {/* SOCIAL */}
-    <div className="space-y-3 md:text-right">
-      <p className="text-[15px] text-black/55">
-        Join Our Social Media
-      </p>
-
-      <div className="grid grid-cols-3 gap-x-8 gap-y-8 text-[42px]">
-        <a href="#" className="transition-opacity hover:opacity-60">
-          𝕏
-        </a>
-
-        <a href="#" className="transition-opacity hover:opacity-60">
-          f
-        </a>
-
-        <a href="#" className="transition-opacity hover:opacity-60">
-          𝓟
-        </a>
-
-        <a href="#" className="transition-opacity hover:opacity-60">
-          
-        </a>
-
-        <a href="#" className="transition-opacity hover:opacity-60">
-          
-        </a>
-
-        <a href="#" className="transition-opacity hover:opacity-60">
-          
-        </a>
-      </div>
-    </div>
-  </div>
-
-  {/* BOTTOM SECTION */}
-  <div className="flex flex-col items-start justify-between gap-8 border-t border-black/20 px-8 py-10 md:flex-row md:items-center">
-
-    {/* COPYRIGHT */}
-    <p className="text-[18px] text-black/70">
-      © 2026 Magnum Photos.
-    </p>
-
-    {/* RIGHT LOGOS */}
-    {/* POWERED BY */}
-  <div className="mt-5 flex justify-end">
-    <div className="inline-flex items-center gap-3 rounded-lg border border-black/10 bg-black/[0.03] px-4 py-3 transition-all duration-300 hover:bg-black/[0.05]">
-
-      {/* Fabulous Media */}
-      <a
-        href="https://fabulousmedia.in/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="opacity-80 transition-opacity hover:opacity-100"
-        aria-label="FabulousMedia"
-      >
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAq1BMVEVHcEwAAADxmjLdVS8AAAAAAACgoKDi3t3tjzTymjHub0bdPC+uKyKfJx+Li4v////q6urXmWXsVi/qNi7MNSu5LyafKCBjY2P4///x8fLqPjK8MSeeJh1ISEj5+vofHx/Rzs7qVEy9urrujIfrLBt6enrWq6m9Kh73x8XcGgC9IRO2dXOnU0+dDwQ4ODitY2CyQDqogYC4EAC4lpScAAC4GAQ0OjsAAAD///8RPPMVAAAAOXRSTlMAYGBgQf//////////UP//////////////////////////////////////////////////UP9QUGHElwbPAAABN0lEQVR4AWyRVRLDMAwFy9zKYU6Zme9/s9Z5ozTqZH93TXKlUpXUBPVKpdEUtNqdbk6vPxj+BSMiZcB2TMt23L/AIyI/ML62F1r9KHJiGSQpaXzDtMLQdqJoIHcYB5QRWCF85MqgDZ9+dT/S3pHBhMDU0ss1AxHMCPSsMIKP4mLQIjBf9LXGBoVgSWC1sNmv40LgEdhsI/a7/eGYB6cUvr1lHa3Pfno+IsgHoHY/fwmI/OsRQZsvcGPvOIo094cOJsTMng6CJw/tpYOEciaDdeZ5TfLmOzDty7e4rQh4TQS4BVCH3fNOYNREwIMG6XnPN2oiAK1fkVLGpMkBD1uimjLgcTNpUwb5wNmPRcAoYlR5UBhqkJQF4rleaYDnglFZIJ7bKgvE383KAvF3k9dnoOyPCSzggAEAuL07sDHFZu4AAAAASUVORK5CYII="
-          alt="FabulousMedia"
-          className="h-4 w-auto object-contain"
-        />
-      </a>
-
-      {/* Divider */}
-      <span className="h-4 w-px bg-black/20" />
-
-      {/* GoCommercially */}
-      <a
-        href="https://gocommercially.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="opacity-80 transition-opacity hover:opacity-100"
-        aria-label="GoCommercially"
-      >
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAABJ0lEQVR4AZ3TEazDYBiF4ddlNJnNYTIv1DO8WpuUqks9KY2Gk2KhXKpXStVKrZ5C5b3QLLkX/i3ZsS955CTnww/5EqzvwDroOIWBCdHkGgY+gcIw0Aw4zmGgJ4AmDJwBKMLAEq6dhoGVGgbL1Lf1I0/OZBuoov1Pp1pGh3R2HsdhiACgUsyJiwOdZsQ32Pr1bJlkIdaVsyOJjlz/VIWztFSqq09a9ciryJaOmsaurGoLBvXC2jd1Vd2TNLvd8ryjoTbfsfNOr8b4PwzkKkcbSpW9qsbRo9+AB9p1ZKfQLxmlqhMAl/sizju2xiNA9hoFbBfq0PZu7dtZp7bMUwBIwqNdxq5+FIbA81Trpz2kSxhEAK1BUADnxSAoP636AoPvwNp9+7yB/AKHCUYfTsNJ9QAAAABJRU5ErkJggg=="
-          alt="GoCommercially"
-          className="h-4 w-auto object-contain"
-        />
-      </a>
-
-    </div>
-  </div>
-  </div>
-</footer>
+              <a
+                href="https://gocommercially.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="opacity-80 transition-opacity hover:opacity-100"
+                aria-label="GoCommercially"
+              >
+                <img
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAABJ0lEQVR4AZ3TEazDYBiF4ddlNJnNYTIv1DO8WpuUqks9KY2Gk2KhXKpXStVKrZ5C5b3QLLkX/i3ZsS955CTnww/5EqzvwDroOIWBCdHkGgY+gcIw0Aw4zmGgJ4AmDJwBKMLAEq6dhoGVGgbL1Lf1I0/OZBuoov1Pp1pGh3R2HsdhiACgUsyJiwOdZsQ32Pr1bJlkIdaVsyOJjlz/VIWztFSqq09a9ciryJaOmsaurGoLBvXC2jd1Vd2TNLvd8ryjoTbfsfNOr8b4PwzkKkcbSpW9qsbRo9+AB9p1ZKfQLxmlqhMAl/sizju2xiNA9hoFbBfq0PZu7dtZp7bMUwBIwqNdxq5+FIbA81Trpz2kSxhEAK1BUADnxSAoP636AoPvwNp9+7yB/AKHCUYfTsNJ9QAAAABJRU5ErkJggg=="
+                  alt="GoCommercially"
+                  className="h-4 w-auto object-contain"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {selectedArt && (
         <div
           className="fixed inset-0 z-50 grid place-items-center lightbox-overlay px-4 py-10"
           onClick={() => setSelectedArt(null)}
         >
-          <div
-            className="w-full max-w-5xl lightbox-card"
-            onClick={(event) => event.stopPropagation()}
-          >
+          <div className="w-full max-w-5xl lightbox-card" onClick={(event) => event.stopPropagation()}>
             <div className="relative overflow-hidden rounded-t-[2.5rem] bg-slate-950">
               <div className="absolute inset-0 opacity-95" style={{ background: selectedArt.gradient }} />
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_26%)]" />
@@ -1352,3 +1360,4 @@ export default function Home() {
     </div>
   );
 }
+
